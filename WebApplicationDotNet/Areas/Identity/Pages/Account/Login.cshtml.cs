@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Data;
 
 namespace WebApplicationDotNet.Areas.Identity.Pages.Account
 {
@@ -115,7 +116,14 @@ namespace WebApplicationDotNet.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    if (User.IsInRole("admin"))
+                    {
+                        return RedirectToAction("dashboard", "Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("dashboard", "Client");
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {

@@ -1,0 +1,25 @@
+﻿<h1>List of Cars</h1>
+<a asp-action="CreateCar">Create</a>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Brand and Model</td>
+            <td>Manufacture Date</td>
+            <td>Is Available</td>
+            <td>Rental Price</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.Id</td>
+                <td>@car.BrandAndModel</td>
+                <td>@car.ManufactureDate.ToShortDateString()</td>
+                <td>@(car.IsAvailable ? "Yes" : "No")</td>
+                <td>@car.RentalPrice</td>
+            </tr>
+        }
+    </tbody>
+</table>

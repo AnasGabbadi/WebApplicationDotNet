@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebApplicationDotNet.Models;
 
 namespace WebApplicationDotNet.Data
 {
@@ -9,5 +10,7 @@ namespace WebApplicationDotNet.Data
             : base(options)
         {
         }
+
+        public DbSet<Car> Cars { get; set; }
     }
 }
